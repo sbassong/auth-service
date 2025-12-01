@@ -13,9 +13,7 @@ const Signup = async (req, res) => {
       passwordDigest,
     });
 
-    console.log({user})
-
-    res.send({email: user.email, username: user.username});
+    res.send({email: user.email, username: user.username, id: user._id});
   } catch (error) {
     if (error.code === 11000) {
       return res
