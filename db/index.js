@@ -5,7 +5,7 @@ const MONGODB_URI =
   process.env.MONGODB_URI || "mongodb://localhost:27017/authDatabase";
 
 mongoose
-  .connect(MONGODB_URI)
+  .connect(MONGODB_URI, {dbName: "cs-361"})
   .then(() => console.log("Successfully connected to MongoDB."))
   .catch((e) => console.error("Connection error", e.message));
 

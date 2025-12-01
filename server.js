@@ -19,7 +19,6 @@ const limiter = rateLimit({
     msg: "Too many requests, please try again later.",
   },
   standardHeaders: true,
-  legacyHeaders: false, // disable the `X-RateLimit-*` headers
 });
 
 app.use(limiter);
