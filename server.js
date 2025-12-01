@@ -22,17 +22,8 @@ const limiter = rateLimit({
   legacyHeaders: false, // disable the `X-RateLimit-*` headers
 });
 
-// const corsOptions = {
-//   origin: [
-//     "http://localhost:3000",
-//     "http://localhost:5173",
-//     //will need to add group's deploys here,
-//   ],
-//   optionsSuccessStatus: 200,
-// };
-
 app.use(limiter);
-// app.use(cors(corsOptions));
+app.use(cors());
 app.use(logger("dev"));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
