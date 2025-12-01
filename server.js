@@ -10,7 +10,28 @@ const AppRouter = require("./routes");
 
 const app = express();
 
-app.use(cors());
+const limiter = rateLimit({
+  windowMs: 15 * 60 * 1000, // 15 minutes
+  max: 50,
+  message: {
+    status: "Error",
+    msg: "Too many requests, please try again later.",
+  },
+  standardHeaders: true,
+  legacyHeaders: false, // disable the `X-RateLimit-*` headers
+});
+
+const corsOptions = {
+  origin: [
+    "http://localhost:3000",
+    "http://localhost:5173",
+    //will need to add group's deploys here,
+  ],
+  optionsSuccessStatus: 200,
+};
+
+app.use(limiter);
+app.use(cors(corsOptions));
 app.use(logger("dev"));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
