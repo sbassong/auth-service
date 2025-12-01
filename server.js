@@ -3,6 +3,7 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const cors = require("cors");
 const logger = require("morgan");
+const rateLimit = require('express-rate-limit');
 const db = require("./db")
 const PORT = process.env.PORT || 3001;
 
