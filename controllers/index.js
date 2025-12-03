@@ -12,8 +12,12 @@ const Signup = async (req, res) => {
       email,
       passwordDigest,
     });
-
-    res.send({email: user.email, username: user.username, id: user._id});
+    
+    res.status(201).send({
+      email: user.email,
+      username: user.username,
+      id: user._id,
+    });
   } catch (error) {
     if (error.code === 11000) {
       return res
@@ -39,7 +43,7 @@ const Signin = async (req, res) => {
 
       let token = createToken(payload);
 
-      return res.send({ user: payload, token });
+      return res.status(201).send({ user: payload, token });
     }
 
     res.status(401).send({ status: "Error", msg: "Unauthorized" });
